@@ -1,0 +1,37 @@
+000100 IDENTIFICATION DIVISION.                                         00010001
+000200 PROGRAM-ID. DEMO1.                                               00020002
+000300 AUTHOR. KRANTHI_KUMAR.                                           00030001
+000400 INSTALLATION. PERSONAL_USE.                                      00040001
+000500 DATE-WRITTEN. 01-JAN-2024.                                       00050001
+000600 DATE-COMPILED. 01-JAN-2024.                                      00060001
+000700 SECURITY. LOW.                                                   00070008
+000800***********    THIS IS ENV DIVISION (OPTIONAL) *****              00080001
+000900 ENVIRONMENT DIVISION.                                            00090001
+001000 CONFIGURATION SECTION.                                           00100001
+001100 SOURCE-COMPUTER. IBM-COMP.                                       00110004
+001200 OBJECT-COMPUTER. IBM-COMP.                                       00120004
+001300 INPUT-OUTPUT SECTION.                                            00130003
+001400 FILE-CONTROL.                                                    00140001
+001500     SELECT EMP-FILE ASSIGN TO EMP                                00150003
+001600        ORGANIZATION IS SEQUENTIAL.                               00160003
+001700***********    THIS IS DATA DIVISION **********                   00170001
+001800 DATA DIVISION.                                                   00180001
+001900 FILE SECTION.                                                    00190001
+002000 FD EMP-FILE RECORD CONTAINS 80 CHARACTERS RECORDING MODE F.      00200003
+002100 01 EMP-RECORD.                                                   00210001
+002200    05 EMP-NUM      PIC 9(3)  VALUE ZEROS.                        00220001
+002300    05 EMP-NAME     PIC X(20) VALUE SPACES.                       00230001
+002400    05 EMP-LOC      PIC X(03) VALUE SPACES.                       00240001
+002500 WORKING-STORAGE SECTION.                                         00250003
+002600 01  WS-VALRBLES.                                                 00260003
+002700     05  WS-PARM-VALUE PIC X(5) VALUE SPACES.                     00270006
+002800 LINKAGE SECTION.                                                 00280001
+002900 01 PARM-VALUES.                                                  00290001
+003000   05 PARM-LENGTH PIC S9(04) COMP.                                00300001
+003100   05 PARM-VALUE1 PIC X(5).                                       00310001
+003200 PROCEDURE DIVISION USING PARM-VALUES.                            00320001
+003300     MOVE PARM-VALUE1 TO WS-PARM-VALUE.                           00330001
+003400     DISPLAY " PARM LENGTH IS :" PARM-LENGTH.                     00340001
+003500     DISPLAY " PARM VALUE  IS :" WS-PARM-VALUE.                   00350001
+003600     STOP RUN.                                                    00360001
+

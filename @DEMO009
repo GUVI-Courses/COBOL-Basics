@@ -1,0 +1,36 @@
+000100 IDENTIFICATION DIVISION.                                         00010000
+000200 PROGRAM-ID. DEMO009.                                             00020004
+000300*  DEMO ON - PERFORM,PERFORM THRU,PERFORM UNTIL                   00030001
+001100 DATA DIVISION.                                                   00110000
+001200 FILE SECTION.                                                    00120000
+001900 WORKING-STORAGE SECTION.                                         00190000
+002000 01  WS-VARIABES.                                                 00200000
+002100     05 WS-EMP-RECORD  PIC X(80) VALUE SPACES.                    00210000
+002200     05 WS-COUNT       PIC 9(2) VALUE ZEROS.                      00220003
+002300     05 WS-FILE-STATUS PIC 9(2) VALUE ZEROS.                      00230000
+002400 PROCEDURE DIVISION.                                              00240000
+002500*    PERFORM SIMPLE-PARA.                                         00250006
+002600*    PERFORM UNTIL-PARA UNTIL WS-COUNT = 10.                      00260007
+002700     PERFORM THRU-PARA.                                           00270007
+002800     STOP RUN.                                                    00280000
+002900 SIMPLE-PARA.                                                     00290001
+003000     DISPLAY '   '.                                               00300001
+003001     DISPLAY '********************************'.                  00300101
+003010     DISPLAY 'I AM PRINTING FROM A SIMPLE PARA'.                  00301001
+003020     DISPLAY '********************************'.                  00302001
+003030     DISPLAY '   '.                                               00303001
+003100 UNTIL-PARA.                                                      00310001
+003200     DISPLAY 'I AM PRINTING FROM UNTIL PARA, COUNT IS :' WS-COUNT.00320001
+003300     ADD 1 TO WS-COUNT.                                           00330001
+003600 THRU-PARA.                                                       00360001
+003700     PERFORM ONE-PARA THRU THREE-PARA.                            00370001
+004100 ONE-PARA.                                                        00410001
+004110     DISPLAY '********************************'.                  00411001
+004120     DISPLAY 'I AM PRINTING FROM ONE PARA '.                      00412001
+004130 TWO-PARA.                                                        00413001
+004140     DISPLAY '********************************'.                  00414001
+004150     DISPLAY 'I AM PRINTING FROM TWO PARA '.                      00415001
+004160 THREE-PARA.                                                      00416001
+004170     DISPLAY '********************************'.                  00417001
+004180     DISPLAY 'I AM PRINTING FROM THREE PARA '.                    00418001
+

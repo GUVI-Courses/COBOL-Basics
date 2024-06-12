@@ -1,0 +1,54 @@
+000100 IDENTIFICATION DIVISION.                                         00010000
+000200 PROGRAM-ID. DEMO8.                                               00020000
+000300*  PROCEDURE DIVISION VERBS                                       00030000
+000400*  SEQUENCE CONTROL VERBS - IF END-IF. EVALUATE WHEN              00040000
+000500 DATA DIVISION.                                                   00050000
+000600 FILE SECTION.                                                    00060000
+000700 WORKING-STORAGE SECTION.                                         00070000
+000800 01  WS-VARIABLES.                                                00080000
+000900     05  WS-EMP-NAME PIC X(20) VALUE SPACES.                      00090000
+001000     05  WS-TIM-STAMP PIC X(20) VALUE SPACES.                     00100000
+001100     05  WS-DATE      PIC X(20) VALUE SPACES.                     00110000
+001200     05  WS-TODAY     PIC X(8)  VALUE SPACES.                     00120000
+001210     05  WS-EXP       PIC 9(2)  VALUE 18.                         00121000
+001300 PROCEDURE DIVISION.                                              00130000
+001400     ACCEPT WS-EMP-NAME.                                          00140000
+001500     DISPLAY 'EMPLOYEE NAME RECEIVED: ' WS-EMP-NAME.              00150000
+001600                                                                  00160000
+002420*    IF WS-EMP-NAME  = 'KRANTHI KUMAR B'                          00242000
+002421*       PERFORM MANAGER-PARA                                      00242100
+002422*    ELSE                                                         00242200
+002423*    IF WS-EMP-NAME  = 'NAVEEN N'                                 00242300
+002424*       PERFORM TEAM-LEAD-PARA                                    00242400
+002425*    ELSE                                                         00242500
+002426*    IF WS-EMP-NAME  = 'SOWMYA'                                   00242600
+002427*       PERFORM TEAM-MEM-PARA                                     00242700
+002430*    ELSE                                                         00243000
+002431*       PERFORM OTHERS-PARA                                       00243100
+002440*    END-IF.                                                      00244000
+002441*    IF WS-EMP-NAME  = 'KRANTHI KUMAR B'                          00244100
+002442*       IF WS-EXP >= 15                                           00244200
+002443*          PERFORM MANAGER-PARA                                   00244300
+002444*       END-IF                                                    00244400
+002445*    END-IF                                                       00244500
+002447*                                                                 00244700
+002448     EVALUATE WS-EMP-NAME                                         00244800
+002449         WHEN 'KRANTHI KUMAR B'                                   00244900
+002450              DISPLAY 'HE IS THE MANAGER - FROM WHEN'             00245000
+002451         WHEN 'NAVEEN N'                                          00245100
+002452              DISPLAY 'HE IS TEAM LEAD - FROM WHEN'               00245200
+002453         WHEN 'SOWMYA'                                            00245300
+002454              DISPLAY 'SHE IS A DEVELOPER - FROM WHEN'            00245400
+002455         WHEN OTHER                                               00245500
+002456              DISPLAY 'NOT A TEAM MEMBER - FROM WHEN'             00245600
+002457     END-EVALUATE.                                                00245700
+002458     STOP RUN.                                                    00245800
+002459 MANAGER-PARA.                                                    00245900
+002460     DISPLAY 'HE/SHE IS THE MANAGER - FROM IF'.                   00246000
+002461 TEAM-LEAD-PARA.                                                  00246100
+002462     DISPLAY 'HE/SHE IS THE TEAM LEAD - FROM IF'.                 00246200
+002463 TEAM-MEM-PARA.                                                   00246300
+002464     DISPLAY 'HE/SHE IS THE TEAM MEM - FROM IF'.                  00246400
+002465 OTHERS-PARA.                                                     00246500
+002470     DISPLAY 'HE/SHE IS NOT MANAGER - FROM IF'.                   00247000
+

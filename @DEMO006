@@ -1,0 +1,111 @@
+000100 IDENTIFICATION DIVISION.                                         00010000
+000200 PROGRAM-ID. DEMO6.                                               00020000
+000300*  PROCEDURE DIVISION VERBS                                       00030000
+000400*  ARITHMATIC VERBS ADD, SUBTRACT, MULTIPLY, DIVIDE, COMPUTE      00040000
+000500 DATA DIVISION.                                                   00050000
+000600 FILE SECTION.                                                    00060000
+000700 WORKING-STORAGE SECTION.                                         00070000
+000800 01  WS-VARIABLES.                                                00080000
+002500     05  WS-VAR1   PIC 9(5) VALUE 12345.                          00250000
+002600     05  WS-VAR2   PIC 9(5) VALUE 54321.                          00260000
+002700     05  WS-VAR3   PIC 9(5) VALUE ZEROS.                          00270000
+002800     05  WS-VAR4   PIC 9(1) VALUE 0.                              00280014
+002810     05  WS-VAR5   PIC 9(9).99.                                   00281003
+002820     05  WS-REM    PIC 9(5) VALUE ZEROS.                          00282007
+002900 PROCEDURE DIVISION.                                              00290000
+003000*    PERFORM ADD-PARA.                                            00300009
+003100*    PERFORM SUBTRACT-PARA.                                       00310010
+003200*    PERFORM MULTIPLY-PARA.                                       00320012
+003210     PERFORM DIVIDE-PARA.                                         00321014
+003220*    PERFORM COMPUTE-PARA.                                        00322014
+003300     STOP RUN.                                                    00330000
+003400 ADD-PARA.                                                        00340000
+003500     DISPLAY '*********  ADD -PARA DEMO **********'.              00350000
+003600                                                                  00360000
+003610     INITIALIZE WS-VAR3                                           00361002
+003700     ADD WS-VAR1 TO WS-VAR2 GIVING WS-VAR3.                       00370000
+003800                                                                  00380000
+004000     DISPLAY "WS-VAR1 :"  WS-VAR1.                                00400000
+004010     DISPLAY "WS-VAR2 :"  WS-VAR2.                                00401000
+004020     DISPLAY "WS-VAR3 :"  WS-VAR3.                                00402000
+004030                                                                  00403000
+004040 SUBTRACT-PARA.                                                   00404000
+004050     DISPLAY '*********  SUBTRACT-PARA DEMO ******'.              00405000
+004060                                                                  00406000
+004061     INITIALIZE WS-VAR3                                           00406102
+004070     SUBTRACT WS-VAR1 FROM WS-VAR2 GIVING WS-VAR3.                00407000
+004080                                                                  00408000
+004090     DISPLAY "WS-VAR1 :"  WS-VAR1.                                00409000
+004100     DISPLAY "WS-VAR2 :"  WS-VAR2.                                00410000
+004200     DISPLAY "WS-VAR3 :"  WS-VAR3.                                00420000
+004300                                                                  00430000
+004400 MULTIPLY-PARA.                                                   00440002
+004500     DISPLAY '*********  MULTIPLY-PARA DEMO ******'.              00450002
+004600                                                                  00460002
+004610     INITIALIZE WS-VAR3                                           00461002
+004700     MULTIPLY WS-VAR1 BY   WS-VAR4 GIVING WS-VAR3.                00470002
+004800                                                                  00480002
+004900     DISPLAY "WS-VAR1 :"  WS-VAR1.                                00490002
+005000     DISPLAY "WS-VAR4 :"  WS-VAR4.                                00500004
+005100     DISPLAY "WS-VAR3 :"  WS-VAR3.                                00510002
+005200                                                                  00520002
+005201     DISPLAY '*** MULTIPLY WITH OVERFLOW ***'                     00520106
+005210     INITIALIZE WS-VAR3                                           00521002
+005300     MULTIPLY WS-VAR1 BY   WS-VAR2 GIVING WS-VAR3                 00530002
+005310*****         ON SIZE ERROR DISPLAY 'BAD MULTIPLY'                00531011
+005320     END-MULTIPLY.                                                00532002
+005400                                                                  00540002
+005500     DISPLAY "WS-VAR1 :"  WS-VAR1.                                00550002
+005600     DISPLAY "WS-VAR2 :"  WS-VAR2.                                00560002
+005700     DISPLAY "WS-VAR3 :"  WS-VAR3.                                00570002
+005800                                                                  00580002
+005900 DIVIDE-PARA.                                                     00590002
+006000     DISPLAY '*********  DIVIDE-PARA DEMO ******'.                00600002
+006100                                                                  00610002
+006200     INITIALIZE WS-VAR3                                           00620002
+006300     DIVIDE WS-VAR4 INTO WS-VAR1 GIVING WS-VAR3 REMAINDER WS-REM. 00630007
+006400                                                                  00640002
+006500     DISPLAY "WS-VAR1 :"  WS-VAR1.                                00650002
+006600     DISPLAY "WS-VAR4 :"  WS-VAR4.                                00660005
+006700     DISPLAY "WS-VAR3 :"  WS-VAR3.                                00670002
+006710     DISPLAY 'REMAINDER: ' WS-REM.                                00671007
+006800                                                                  00680002
+006900     INITIALIZE WS-VAR5                                           00690002
+007000     DIVIDE   WS-VAR4 INTO WS-VAR1 GIVING WS-VAR5.                00700004
+007300                                                                  00730002
+007400     DISPLAY "WS-VAR1 :"  WS-VAR1.                                00740002
+007500     DISPLAY "WS-VAR4 :"  WS-VAR4.                                00750005
+007600     DISPLAY "WS-VAR5 :"  WS-VAR5.                                00760013
+007700                                                                  00770002
+007800 COMPUTE-PARA.                                                    00780002
+007900     DISPLAY '*********  COMPUTE-PARA DEMO ******'.               00790002
+008000     DISPLAY ' '                                                  00800005
+008001                                                                  00800105
+008010     DISPLAY '***** COMPUTE-ADD      ********'                    00801005
+008100     INITIALIZE WS-VAR3                                           00810002
+008200     COMPUTE WS-VAR3 = WS-VAR1 + WS-VAR2                          00820002
+008201     DISPLAY "WS-VAR1 :"  WS-VAR1.                                00820102
+008202     DISPLAY "WS-VAR2 :"  WS-VAR2.                                00820202
+008203     DISPLAY "WS-VAR3 :"  WS-VAR3.                                00820302
+008204                                                                  00820402
+008205     DISPLAY '***** COMPUTE-SUBTRACT ********'                    00820505
+008206     INITIALIZE WS-VAR3                                           00820602
+008207     COMPUTE WS-VAR3 = WS-VAR2 - WS-VAR1                          00820702
+008208     DISPLAY "WS-VAR1 :"  WS-VAR1.                                00820802
+008209     DISPLAY "WS-VAR2 :"  WS-VAR2.                                00820902
+008210     DISPLAY "WS-VAR3 :"  WS-VAR3.                                00821002
+008211                                                                  00821102
+008212     DISPLAY '***** COMPUTE-MULTIPLY ********'                    00821205
+008213     INITIALIZE WS-VAR3                                           00821302
+008214     COMPUTE WS-VAR3 = WS-VAR1 * WS-VAR4                          00821402
+008215     DISPLAY "WS-VAR1 :"  WS-VAR1.                                00821502
+008216     DISPLAY "WS-VAR4 :"  WS-VAR4.                                00821605
+008217     DISPLAY "WS-VAR3 :"  WS-VAR3.                                00821702
+008218                                                                  00821802
+008219     DISPLAY '***** COMPUTE-DIVIDE ********'                      00821905
+008220     INITIALIZE WS-VAR3                                           00822002
+008221     COMPUTE WS-VAR5 = WS-VAR1 / WS-VAR4                          00822106
+008222     DISPLAY "WS-VAR1 :"  WS-VAR1.                                00822206
+008223     DISPLAY "WS-VAR4 :"  WS-VAR4.                                00822306
+008224     DISPLAY "WS-VAR5 :"  WS-VAR5.                                00822405
+

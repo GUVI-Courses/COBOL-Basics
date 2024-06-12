@@ -1,0 +1,55 @@
+000100 IDENTIFICATION DIVISION.                                         00010000
+000200 PROGRAM-ID. DEMO12.                                              00020000
+000300*  COBOL DEMO                                                     00030000
+000400*  HOW TO RESOLVE RUN TIME ERRORS. SOME BASIC RUN TIME ERRORS     00040000
+000410*S806, S322, S0C7, SOCB (DIVIDE ERROR)                            00041008
+000500 DATA DIVISION.                                                   00050000
+000600 FILE SECTION.                                                    00060000
+000700 WORKING-STORAGE SECTION.                                         00070000
+000800 01  WS-VARIABLES.                                                00080000
+000900     05  WS-EMP-NAME PIC X(20) VALUE SPACES.                      00090000
+001000     05  WS-TIM-STAMP PIC X(20) VALUE SPACES.                     00100000
+001100     05  WS-DATE      PIC X(20) VALUE SPACES.                     00110000
+001200     05  WS-TODAY     PIC X(8)  VALUE SPACES.                     00120000
+001300     05  WS-AGE       PIC S9(3)V99 COMP-3.                        00130005
+001400 PROCEDURE DIVISION.                                              00140000
+001500     ACCEPT WS-AGE.                                               00150003
+001600     DISPLAY 'EMPLOYEE AGE RECEIVED: ' WS-AGE.                    00160003
+001700     COMPUTE WS-AGE = WS-AGE + 1                                  00170004
+001710     IF WS-AGE > 30                                               00171004
+001720        DISPLAY 'AGE IS MORE THAN 30'                             00172004
+001730     END-IF                                                       00173004
+001740                                                                  00174004
+001800     ACCEPT WS-DATE FROM DATE.                                    00180000
+001900     DISPLAY 'WS-DATE VALUE:' WS-DATE.                            00190000
+002000                                                                  00200000
+002100     ACCEPT WS-TODAY FROM DATE YYYYMMDD.                          00210000
+002200     DISPLAY 'WS-TODAY VALUE:' WS-TODAY.                          00220000
+002300                                                                  00230000
+002400     ACCEPT WS-TIM-STAMP  FROM TIME.                              00240000
+002500     DISPLAY  'WS-TIM-STAMP: ' WS-TIM-STAMP.                      00250000
+002600                                                                  00260000
+002700     MOVE 99 TO WS-AGE.                                           00270000
+002800                                                                  00280000
+002900     IF WS-EMP-NAME  = 'KRANTHI KUMAR B'                          00290000
+003000        PERFORM MANAGER-PARA                                      00300000
+003100     ELSE                                                         00310000
+003200        PERFORM OTHERS-PARA                                       00320000
+003300     END-IF.                                                      00330000
+003400                                                                  00340000
+003500     EVALUATE WS-EMP-NAME                                         00350000
+003600         WHEN 'KRANTHI KUMAR B'                                   00360000
+003700              DISPLAY 'HE IS THE MANAGER - FROM WHEN'             00370000
+003800         WHEN 'NAVEEN N'                                          00380000
+003900              DISPLAY 'HE IS TEAM LEAD - FROM WHEN'               00390000
+004000         WHEN 'SOWMYA'                                            00400000
+004100              DISPLAY 'SHE IS A DEVELOPER - FROM WHEN'            00410000
+004200         WHEN OTHER                                               00420000
+004300              DISPLAY 'NOT A TEAM MEMBER - FROM WHEN'             00430000
+004400     END-EVALUATE.                                                00440000
+004500     STOP RUN.                                                    00450000
+004600 MANAGER-PARA.                                                    00460000
+004700     DISPLAY 'HE IS THE MANAGER - FROM IF'.                       00470000
+004800 OTHERS-PARA.                                                     00480000
+004900     DISPLAY 'HE IS NOT MANAGER - FROM IF'.                       00490000
+

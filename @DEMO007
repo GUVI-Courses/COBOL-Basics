@@ -1,0 +1,26 @@
+000100 IDENTIFICATION DIVISION.                                         00010000
+000200 PROGRAM-ID. DEMO7.                                               00020000
+000210*  PROCEDURE DIVISION VERBS                                       00021000
+000220*  I/O VERBS ACCEPT AND DISPLAY                                   00022000
+000300 DATA DIVISION.                                                   00030000
+000400 FILE SECTION.                                                    00040000
+000500 WORKING-STORAGE SECTION.                                         00050000
+000600 01  WS-VARIABLES.                                                00060000
+000700     05  WS-EMP-VALUE PIC X(20) VALUE SPACES.                     00070000
+000701     05  WS-TIM-STAMP PIC X(20) VALUE SPACES.                     00070100
+000710     05  WS-DATE      PIC X(20) VALUE SPACES.                     00071000
+000720     05  WS-TODAY     PIC X(8)  VALUE SPACES.                     00072000
+000800 PROCEDURE DIVISION.                                              00080000
+000900     ACCEPT WS-EMP-VALUE.                                         00090000
+000910     DISPLAY 'EMPLOYEE NAME RECEIVED: ' WS-EMP-VALUE.             00091000
+000920                                                                  00092000
+000930     ACCEPT WS-DATE FROM DATE.                                    00093000
+000940     DISPLAY 'WS-DATE VALUE:' WS-DATE.                            00094000
+000950                                                                  00095000
+000960     ACCEPT WS-TODAY FROM DATE YYYYMMDD.                          00096000
+000970     DISPLAY 'WS-TODAY VALUE:' WS-TODAY.                          00097000
+000980                                                                  00098000
+000990     ACCEPT WS-TIM-STAMP  FROM TIME.                              00099000
+000991     DISPLAY  'WS-TIM-STAMP: ' WS-TIM-STAMP.                      00099100
+001000     STOP RUN.                                                    00100000
+

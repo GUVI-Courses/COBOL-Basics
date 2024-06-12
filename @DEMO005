@@ -1,0 +1,68 @@
+000100 IDENTIFICATION DIVISION.                                         00010000
+000200 PROGRAM-ID. DEMO5.                                               00020000
+000300*  PROCEDURE DIVISION VERBS                                       00030000
+000400*  SIMPLE MOVE , GROUP MOVE, MOVE OF TO OF                        00040000
+000500 DATA DIVISION.                                                   00050000
+000600 FILE SECTION.                                                    00060000
+000700 WORKING-STORAGE SECTION.                                         00070000
+000800 01  WS-VARIABLES.                                                00080000
+000900     05  WS-FULL-NAME.                                            00090000
+001000         10 WS-FIR-NAME PIC X(7) VALUE SPACES.                    00100004
+001100         10 WS-MID-NAME PIC X(7) VALUE SPACES.                    00110004
+001110         10 WS-LAS-NAME PIC X(7) VALUE SPACES.                    00111004
+001120     05  WS-EMP-NAME.                                             00112000
+001130         10 WS-E-FIR-NAME PIC X(7) VALUE SPACES.                  00113004
+001140         10 WS-E-MID-NAME PIC X(7) VALUE SPACES.                  00114004
+001150         10 WS-E-LAS-NAME PIC X(7) VALUE SPACES.                  00115004
+001160     05  WS-STU-NAME.                                             00116000
+001170         10 WS-S-FIR-NAME PIC X(7) VALUE SPACES.                  00117004
+001180         10 WS-S-MID-NAME PIC X(7) VALUE SPACES.                  00118004
+001190         10 WS-S-LAS-NAME PIC X(7) VALUE SPACES.                  00119004
+001191     05  WS-DOCTOR-NAME.                                          00119101
+001192         10 WS-D-FIR-NAME PIC X(7) VALUE 'MANOJ'.                 00119204
+001193         10 WS-D-MID-NAME PIC X(7) VALUE 'DOCTOR'.                00119304
+001194         10 WS-D-LAS-NAME PIC X(7) VALUE 'SINGH'.                 00119404
+001200     05  WS-POLICE-NAME.                                          00120001
+001300         10 WS-D-FIR-NAME PIC X(7) VALUE SPACES.                  00130004
+001400         10 WS-D-MID-NAME PIC X(7) VALUE 'POLICE'.                00140004
+001500         10 WS-D-LAS-NAME PIC X(7) VALUE SPACES.                  00150004
+001700 PROCEDURE DIVISION.                                              00170000
+001701     PERFORM SIMPLE-MOVE.                                         00170100
+001702     PERFORM GROUP-MOVE.                                          00170205
+001703     PERFORM MOVE-OF.                                             00170305
+001704     STOP RUN.                                                    00170400
+001705 SIMPLE-MOVE.                                                     00170500
+001706     DISPLAY '*********  SIMPLE MOVE DEMO **********'.            00170604
+001710     MOVE 'SAURAV'     TO WS-FIR-NAME.                            00171000
+001720     MOVE 'KUMAR'      TO WS-MID-NAME.                            00172000
+001730     MOVE 'BHATIA'     TO WS-LAS-NAME.                            00173000
+001740                                                                  00174000
+001800     DISPLAY "FIRST NAME IS :"  WS-FIR-NAME.                      00180000
+001900     DISPLAY "MIDDLE NAME IS:"  WS-MID-NAME.                      00190000
+002000     DISPLAY "LAST NAME IS  :"  WS-LAS-NAME.                      00200000
+002100     DISPLAY "FULL NAME IS  :"  WS-FULL-NAME.                     00210000
+002200 GROUP-MOVE.                                                      00220000
+002210     DISPLAY '*********  GROUP  MOVE DEMO **********'.            00221004
+002300     MOVE WS-FIR-NAME  TO WS-S-FIR-NAME.                          00230000
+002400     MOVE WS-MID-NAME  TO WS-S-MID-NAME.                          00240000
+002500     MOVE WS-LAS-NAME  TO WS-S-LAS-NAME.                          00250000
+002600                                                                  00260000
+002700     DISPLAY "STUDENT FULL NAME IS :"  WS-STU-NAME.               00270005
+002800                                                                  00280000
+002900     MOVE WS-FULL-NAME  TO WS-EMP-NAME.                           00290000
+003000                                                                  00300000
+003100     DISPLAY "FIRST NAME IS :"  WS-E-FIR-NAME.                    00310000
+003200     DISPLAY "MIDDLE NAME IS:"  WS-E-MID-NAME.                    00320000
+003300     DISPLAY "LAST NAME IS  :"  WS-E-LAS-NAME.                    00330000
+003310     DISPLAY "WS-EMP-FULL NAME :"  WS-EMP-NAME.                   00331005
+003400 MOVE-OF.                                                         00340000
+003410     DISPLAY '*********  MOVE-OF DEMO **********'.                00341004
+003420     DISPLAY "WS-DUPL-NAME IS :"  WS-POLICE-NAME.                 00342005
+003500     MOVE WS-D-FIR-NAME  OF WS-DOCTOR-NAME TO                     00350001
+003600          WS-D-FIR-NAME  OF WS-POLICE-NAME.                       00360001
+003610     MOVE WS-D-LAS-NAME  OF WS-DOCTOR-NAME TO                     00361001
+003620          WS-D-LAS-NAME  OF WS-POLICE-NAME.                       00362001
+003630     DISPLAY "WS-DUPL-NAME IS :"  WS-POLICE-NAME.                 00363006
+003800                                                                  00380000
+004000                                                                  00400000
+

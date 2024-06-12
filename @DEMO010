@@ -1,0 +1,38 @@
+000100 IDENTIFICATION DIVISION.                                         00010000
+000200 PROGRAM-ID. DEMO014.                                             00020000
+000300*  DEMO ON - INLINE PERFORM, PERFORM N TIMES, PERFORM VARYING     00030004
+000310*  WITH TEST BEFORE/AFTER                                         00031006
+000400 DATA DIVISION.                                                   00040000
+000500 FILE SECTION.                                                    00050000
+000600 WORKING-STORAGE SECTION.                                         00060000
+000700 01  WS-VARIABES.                                                 00070000
+000800     05 WS-EMP-RECORD  PIC X(80) VALUE SPACES.                    00080000
+000900     05 WS-COUNT       PIC 9(2) VALUE ZEROS.                      00090000
+000901     05 WS-INLINE-VAR  PIC 9(2) VALUE ZEROS.                      00090104
+000910     05 WS-X           PIC 9(1) VALUE ZEROS.                      00091011
+001000     05 WS-FILE-STATUS PIC 9(2) VALUE ZEROS.                      00100000
+001100 PROCEDURE DIVISION.                                              00110000
+001110*    PERFORM                                                      00111008
+001111*       DISPLAY '*********************************'               00111108
+001112*       COMPUTE WS-INLINE-VAR = 12 + 16                           00111208
+001113*       DISPLAY 'WS-INLINE-VAR = ' WS-INLINE-VAR                  00111308
+001114*       DISPLAY '*********************************'               00111408
+001120*    END-PERFORM.                                                 00112008
+001200*    PERFORM SIMPLE-PARA 5 TIMES.                                 00120009
+001210     DISPLAY 'BEFORE PERFORM...VARYING'.                          00121011
+001220     PERFORM AGE-CALCULATION                                      00122011
+001240             VARYING WS-X FROM 1 BY 1 UNTIL WS-X > 12.            00124011
+001260     DISPLAY 'AFTER PERFORM...VARYING'.                           00126011
+001270*    PERFORM AGE-CALCULATION WITH TEST AFTER                      00127011
+001280*            VARYING WS-X FROM 1 BY 1 UNTIL WS-X > 5.             00128011
+001500     STOP RUN.                                                    00150000
+001600 SIMPLE-PARA.                                                     00160000
+001610     ADD 1 TO WS-COUNT.                                           00161003
+001700     DISPLAY '   '.                                               00170000
+001800     DISPLAY '********************************'.                  00180000
+001900     DISPLAY 'I AM PRINTING FROM A SIMPLE PARA: '  WS-COUNT.      00190003
+002000     DISPLAY '********************************'.                  00200000
+002100     DISPLAY '   '.                                               00210000
+002200 AGE-CALCULATION.                                                 00220001
+002300     DISPLAY 'YOUR AGE IS :' WS-X.                                00230000
+

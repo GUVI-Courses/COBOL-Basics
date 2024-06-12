@@ -1,0 +1,39 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. DEMO4.
+      *  DEMO TO SHOW WHAT ARE GROUP VARIABLES AND ELEMENTARY VARIABLES
+      *  LEVELS 01, 02-49, 66, 77 , 88
+      *  USAGE CLAUSE
+       DATA DIVISION.
+       FILE SECTION.
+       WORKING-STORAGE SECTION.
+       01  WS-VARIABLES.
+           05  WS-ALPHANUM PIC X(20) VALUE 'SAMPLE DATA 123@#'.
+           05  WS-ALPHABET PIC A(20) VALUE 'SAMPLE DATA ONLY'.
+           05  WS-NUMERIC  PIC 9(5)  VALUE 12345.
+           05  WS-NAME.
+               10 WS-SUR-NAME PIC X(20) VALUE 'SHARMA'.
+               10 WS-MID-NAME PIC X(20) VALUE 'KUMAR'.
+               10 WS-FIR-NAME PIC X(20) VALUE 'SURESH'.
+       01  WS-CITY.
+           88  METRO   VALUES 'CHN','DEL','KOL','MUM'.
+           88  NON-METRO VALUE SPACES.
+           05 WS-NUM PIC  9(5) USAGE IS DISPLAY.
+           05 WS-NUM1 PIC  9(10) USAGE IS COMP.
+           05 WS-NUM2 PIC  S9(5) USAGE IS COMP-3.
+       77  WS-NAME     PIC X(9)  VALUE 'JOHN'.
+       PROCEDURE DIVISION.
+           MOVE  12345 TO WS-NUM
+           DISPLAY WS-NUM
+           MOVE  12345 TO WS-NUM1
+           DISPLAY WS-NUM1
+           MOVE  +12345 TO WS-NUM2
+           DISPLAY WS-NUM2
+                 MOVE 'CHN' TO WS-CITY
+
+                 IF METRO
+                    DISPLAY 'METRO CITY'
+                 ELSE
+                    DISPLAY 'NON METRO CITY'
+                 END-IF.
+           STOP RUN.
+

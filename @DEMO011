@@ -1,0 +1,52 @@
+000100 IDENTIFICATION DIVISION.                                         00010000
+000200 PROGRAM-ID. DEMO11.                                              00020000
+000300*  COBOL DEMO                                                     00030000
+000400*  HOW TO RESOLVE COMPILER ERRORS                                 00040001
+000500 DATA DIVISION.                                                   00050000
+000600 FILE SECTION.                                                    00060000
+000700 WORKING-STORAGE SECTION.                                         00070002
+000800     01  WS-VARIABLES.                                            00080007
+000900         05  WS-EMP-NAME PIC X(20) VALUE SPACES.                  00090007
+001000         05  WS-TIM-STAMP PIC X(20) VALUE SPACES.                 00100007
+001100 05  WS-DATE      PIC X(20) VALUE SPACES.                         00110001
+001200     05  WS-TODAY     PIC X(8)  VALUE SPACES.                     00120000
+001300     05  WS-AGE       PIC X(3)  VALUE ZEROS.                      00130004
+001400     05  WS-VAR3      PIC 9(3)  VALUE ZEROS.                      00140003
+001500 PROCEDURE DIVISION.                                              00150000
+001600   ACCEPT WS-EMP-NAME.                                            00160007
+001700   DISPLAY 'EMPLOYEE NAME RECEIVED: ' WS-EMP-NAME.                00170007
+001800                                                                  00180000
+001900     ACCEPT WS-DATE FROM DATE.                                    00190000
+002000     .                                                            00200007
+002100     DISPLAY 'WS-DATE VALUE:' WS-DATE.                            00210000
+002200                                                                  00220000
+002300     ACCEPT WS-TODAY FROM DATE YYYYMMDD.                          00230000
+002400     DISPLAY 'WS-TODAY VALUE:' WS-TODAY.                          00240000
+002500                                                                  00250000
+002600     ACCEPT WS-TIM-STAMP  FROM TIME.                              00260003
+002700     DISPLAY  'WS-TIM-STAMP: ' WS-TIM-STAMP.                      00270000
+002800                                                                  00280000
+002900     MOVE 'ABC' TO WS-AGE1.                                       00290007
+003000                                                                  00300000
+003100     IF WS-EMP-NAME='KRANTHI KUMAR B'                             00310007
+003200        PERFORM MANAGER-PARAA                                     00320007
+003300     ELSE                                                         00330000
+003400        PERFORM OTHERS-PARA.                                      00340007
+003500     END-IF.                                                      00350000
+003600                                                                  00360000
+003700     EVALUATE WS-EMP-NAME                                         00370005
+003800         WHEN 'KRANTHI KUMAR B'                                   00380000
+003900              DISPLAY 'HE IS THE MANAGER - FROM WHEN'             00390000
+004000         WHEN 'NAVEEN N'                                          00400000
+004100              DISPLAY 'HE IS TEAM LEAD - FROM WHEN'               00410000
+004200         WHEN 'SOWMYA'                                            00420000
+004300              DISPLAY 'SHE IS A DEVELOPER - FROM WHEN'            00430000
+004400         WHEN OTHER                                               00440000
+004500              DISPLAY 'NOT A TEAM MEMBER - FROM WHEN'             00450000
+004600     END-EVALUATE.                                                00460000
+004700    STOP RUN.                                                     00470007
+004800 MANAGER-PARA.                                                    00480000
+004900     DISPLAY 'HE IS THE MANAGER - FROM IF'.                       00490006
+005000 OTHERS-PARA.                                                     00500000
+005100     DISPLAY 'HE IS NOT MANAGER - FROM IF'.                       00510000
+
